@@ -41,7 +41,7 @@ class Solution{
             v.push_back(b[i]);
         }
         
-        for(int i = (n+m)-1 ;i>=0 ;i--){
+        for(int i = ((n+m)-1)/2 ;i>=0 ;i--){
             
          Heapify(v , i ,n+m);
         }
