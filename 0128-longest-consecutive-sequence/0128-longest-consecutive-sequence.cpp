@@ -1,35 +1,36 @@
+#include<unordered_map>
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-         unordered_set<int> s(nums.begin(),nums.end()); // this is faster
+    int longestConsecutive(vector<int>& arr) {
+             int n = arr.size(); 
         
-        // for(int i = 0; i<nums.size(); i++)
-        // {
-        //     s.insert(nums[i]);
-        // }
+        unordered_map<int, int> mp;
         
-        int longest_sequence = 0;
+     
+        for(int i = 0; i < n; i++) {
+            mp[arr[i]] = 1;
+        }
         
-        for(int i=0; i<nums.size(); i++)
-        {
-            if(s.find(nums[i] - 1)!=s.end())
-                continue;
-            
-            else
-            {
-                int count = 0;
-                int current_element = nums[i];
-                
-                while(s.find(current_element) != s.end())
+        for(int i = 0; i < n; i++){
+         if(mp.find(arr[i] - 1) != mp.end())  {
+                mp[arr[i]] = 0;
+            }
+        }
+
+        int mxLen = 0; 
+        for(int i = 0; i < n; i++){
+            if(mp[arr[i]] == 1)  {
+                int length = 1; 
+                while(mp.find(arr[i] + length) != mp.end())
                 {
-                    count++;
-                    current_element++;
+                    length++;
                 }
                 
-                longest_sequence = max(longest_sequence,count);
+                mxLen = max(mxLen, length);
             }
         }
         
-        return longest_sequence;
+        return mxLen; // Finally return mxLen
     }
+    
 };
