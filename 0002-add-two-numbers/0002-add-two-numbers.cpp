@@ -11,8 +11,8 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    ListNode *dummy = new ListNode(); 
-        ListNode *temp = dummy; 
+    ListNode *head = new ListNode(); 
+        ListNode *temp = head; 
         int carry = 0;
         while( (l1 != NULL || l2 != NULL) || carry) {
             int sum = 0; 
@@ -32,6 +32,6 @@ public:
             temp -> next = node; 
             temp = temp -> next; 
         }
-        return dummy -> next; 
+        return head -> next; 
     }
 };
