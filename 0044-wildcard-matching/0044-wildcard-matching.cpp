@@ -20,10 +20,6 @@ public:
         if(p[j-1]=='*')
         {
             return dp[i][j] = f(i-1,j,s,p,dp) || f(i,j-1,s,p,dp) ? 1:0;
-            //Two cases
-            //Consider * as len=0
-            //Give one charcter to * and remain at *
-            //at next step it will again be decided from both these cases
         }
         return dp[i][j]=0;
         
