@@ -1,7 +1,7 @@
 class Solution {
 public:
     int f(int i , int buy , vector<int>&a , vector<vector<int>>&dp){
-          if(i == a.size()) return 0;
+          if(i >= a.size()) return 0;
         if(dp[i][buy]!=-1)return dp[i][buy];
         int profit INT_MIN;
         if(buy){
