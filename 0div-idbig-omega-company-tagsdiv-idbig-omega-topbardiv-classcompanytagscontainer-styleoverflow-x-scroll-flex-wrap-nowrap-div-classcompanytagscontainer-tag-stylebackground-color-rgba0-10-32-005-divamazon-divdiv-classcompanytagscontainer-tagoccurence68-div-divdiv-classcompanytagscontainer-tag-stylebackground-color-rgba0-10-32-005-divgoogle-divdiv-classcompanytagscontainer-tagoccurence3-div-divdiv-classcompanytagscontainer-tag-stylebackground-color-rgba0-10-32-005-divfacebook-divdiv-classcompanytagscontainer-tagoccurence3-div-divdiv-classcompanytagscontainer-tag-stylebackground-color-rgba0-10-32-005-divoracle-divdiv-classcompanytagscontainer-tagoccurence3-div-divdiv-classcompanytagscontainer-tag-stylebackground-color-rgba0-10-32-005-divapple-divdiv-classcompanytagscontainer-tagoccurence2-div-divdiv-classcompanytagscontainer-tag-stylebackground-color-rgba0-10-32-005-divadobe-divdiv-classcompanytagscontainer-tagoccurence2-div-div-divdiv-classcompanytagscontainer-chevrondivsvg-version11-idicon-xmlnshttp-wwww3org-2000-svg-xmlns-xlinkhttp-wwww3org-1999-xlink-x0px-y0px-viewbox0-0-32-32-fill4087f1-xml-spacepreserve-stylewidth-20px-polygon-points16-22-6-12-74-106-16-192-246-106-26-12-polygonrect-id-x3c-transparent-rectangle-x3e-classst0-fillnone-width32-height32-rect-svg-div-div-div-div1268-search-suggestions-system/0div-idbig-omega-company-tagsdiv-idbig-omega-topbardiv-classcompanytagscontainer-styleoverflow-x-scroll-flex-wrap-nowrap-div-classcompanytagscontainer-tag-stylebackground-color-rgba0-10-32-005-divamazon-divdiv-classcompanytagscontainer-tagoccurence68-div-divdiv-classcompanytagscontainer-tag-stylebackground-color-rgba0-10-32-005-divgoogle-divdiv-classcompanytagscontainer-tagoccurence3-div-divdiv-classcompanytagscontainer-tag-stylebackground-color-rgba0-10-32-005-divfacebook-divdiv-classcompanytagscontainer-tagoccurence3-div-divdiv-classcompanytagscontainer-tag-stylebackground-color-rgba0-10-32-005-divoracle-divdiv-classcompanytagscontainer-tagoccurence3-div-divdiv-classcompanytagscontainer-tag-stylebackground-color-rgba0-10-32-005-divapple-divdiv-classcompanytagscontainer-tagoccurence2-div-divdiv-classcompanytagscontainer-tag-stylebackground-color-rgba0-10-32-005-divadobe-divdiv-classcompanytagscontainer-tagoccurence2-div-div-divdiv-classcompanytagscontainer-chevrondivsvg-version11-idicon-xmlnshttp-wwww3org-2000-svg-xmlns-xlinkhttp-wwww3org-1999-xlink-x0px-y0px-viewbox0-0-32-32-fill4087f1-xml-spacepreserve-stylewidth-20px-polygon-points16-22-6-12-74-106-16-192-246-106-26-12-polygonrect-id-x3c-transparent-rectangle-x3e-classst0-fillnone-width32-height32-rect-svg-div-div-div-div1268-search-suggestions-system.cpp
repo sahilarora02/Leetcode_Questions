@@ -1,29 +1,38 @@
 class Solution {
 public:
+
+   void find(string s , vector<string>& products , vector<vector<string>>& vec)
+   {
+       int n = s.size();
+       vector<string> temp;
+       for(int i = 0 ; i<products.size() ; i++)
+       {
+           if(temp.size() == 3) break;
+           string str = products[i].substr(0 , n);
+           if(str == s){
+              temp.push_back(products[i]);
+           }
+       }
+
+       vec.push_back(temp);
+   }
+
+
     vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
-     sort(products.begin() , products.end());
-        vector<vector<string>> ans;
-        vector<string> temp;
-        for(int i = 0 ;i<searchWord.size() ; i++){
-            for(int j = 0 ; j<products.size() ; j++){
-                if(products[j][i] == searchWord[i]){
-                    temp.push_back(products[j]);
-                }
-            }
-              products = temp;
-            if(temp.size() > 3){
-                            vector<string> temp2;
-                int k = 0;
-                while(temp2.size()<3){
-                    temp2.push_back(temp[k]);
-                    k++;
-                }
-                ans.push_back(temp2);
-            }else{
-                            ans.push_back(temp);
-            }
-            temp.clear();
+        int n = products.size();
+        sort(products.begin() , products.end());
+
+
+
+        int m = searchWord.size();
+        string s = "";
+        vector<vector<string>> vec;
+        for(int i = 0 ; i<m ; i++)
+        {
+           s+=searchWord[i];
+           find(s , products , vec);
         }
-        return ans;
+
+        return vec;
     }
 };
