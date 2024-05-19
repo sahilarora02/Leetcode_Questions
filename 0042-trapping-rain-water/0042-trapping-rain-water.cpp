@@ -1,24 +1,19 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        vector<int> prefixMax, suffixMax;
         int n =  height.size();
-        int maxi = INT_MIN;
-        for(int i = 0 ;i<n ;i++){
-                        maxi = max(maxi, height[i]);
-            prefixMax.push_back(maxi);
+       int left = 0 , right = n-1 , leftmax = 0 , rightmax = 0, res = 0;
+        while(left<=right){
+            if(height[left]<=height[right]){
+                if(height[left]>leftmax)leftmax = height[left];
+                else res+= leftmax - height[left];
+                left++;
+            }else{
+                if(height[right]>rightmax) rightmax = height[right];
+                else res+= rightmax - height[right];
+                right--;
+            }
         }
-        maxi = INT_MIN;
-        for(int i = n-1 ;i>=0 ;i--){
-             maxi = max(maxi, height[i]);
-            suffixMax.push_back(max(maxi, height[i]));
-        }
-        reverse(suffixMax.begin(),suffixMax.end());
-        int ans = 0;
-        for(int i = 0;i<n ;i++){
-            int val = min(prefixMax[i], suffixMax[i]) - height[i];
-            if(val>0)ans+=val;
-        }
-        return ans;
+        return res;
     }
 };
