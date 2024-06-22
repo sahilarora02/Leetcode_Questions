@@ -7,9 +7,7 @@ public:
             int mod = val%3;
             if(mod == 0){
                 continue;
-            }else if(mod == 1){
-                op++;
-            }else{
+            }else {
                 op++;
             }
         }
